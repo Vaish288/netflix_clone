@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subscription Plans</title>
+</head>
+<body>
+    <h1>Subscription Plans</h1>
+    <form method="post" action="{% url 'subscription' %}">
+        {% csrf_token %}
+        <ul>
+        {% for plan in plans %}
+            <li>
+                <input type="radio" id="plan{{ forloop.counter }}" name="plan" value="{{ plan.id }}">
+                <label for="plan{{ forloop.counter }}">
+                    <strong>Title:</strong> {{ plan.title }}<br>
+                    <strong>Price:</strong> {{ plan.price }}<br>
+                    <strong>Description:</strong> {{ plan.description }}
+                </label>
+            </li>
+        {% endfor %}
+        </ul>
+        <button type="submit">Choose Plan</button>
+    </form>
+</body>
+</html>
+  
